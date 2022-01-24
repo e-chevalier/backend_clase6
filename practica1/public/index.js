@@ -1,18 +1,12 @@
-const socket = io();
+const socket = io()
 
-// Cliente
-socket.on('mi mensaje', data => {
-    alert(data)
-    socket.emit('notificacion', 'Mensaje recibido exitosamente')
-    
-    
-})
+const message = document.getElementById('message')
 
-
-socket.emit('mensaje', 'Hola mundo')
-
-socket.on('mensajes', data => {
-    console.log(data)
+message.addEventListener('keyup', (e) => {
+    console.log(e.target.value)
+    //document.getElementById('newMessage').innerText = e.target.value
+    socket.emit('message', e.target.value)
+    socket.on('newMessage', (data) =>  document.getElementById('newMessage').innerText = e.target.value)
 })
 
 
