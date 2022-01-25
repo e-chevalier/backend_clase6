@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/main.js" defer></script>
+    <title>Socket Practica 1</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="fs-1 text-primary">CHAT - Sockets</div>
+        <div class="my-2 py-2">
+            <div class="fs-3 tex-warning py-2 my-2" id="lastMessage"></div>
+
+            <form action="" method="post">
+                <div class="mb-3">
+                    <label for="author" class="form-label">Autor :</label>
+                    <input type="text" name="author" class="form-control" id="author" aria-describedby="authorHelp">
+                
+                    <label for="message" class="form-label">Mensaje :</label>
+                    <input type="text" name="message" class="form-control" id="message" aria-describedby="messageHelp">
+                </div>
+                <button id="btn_submit" class="btn btn-primary">Enviar</button>
+            </form>
+
+           
+        </div>
+    </div>
+
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
