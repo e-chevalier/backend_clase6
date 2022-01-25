@@ -1,13 +1,20 @@
 const socket = io()
 
-const message = document.getElementById('message')
+const btn_submit = document.getElementById('btn_submit')
 
-message.addEventListener('keyup', (e) => {
-    console.log(e.target.value)
-    //document.getElementById('newMessage').innerText = e.target.value
-    socket.emit('newMessage', e.target.value)
+btn_submit.addEventListener('click', (e) => {
+    //console.log(e.target.value)
+    e.preventDefault()
+    let elem_message = document.getElementById('message')
+    let message = elem_message.value
+    elem_message.value = ""
+    console.log(message)
+    socket.emit('newMessage', message)
 })
 
-socket.on('messages', (data) =>  document.getElementById('lastMessage').innerText = data)
+socket.on('messages', (data) =>  { 
+    let content = data.reduce( (a, b) => a + `<p>Socket ID: ${ b.socketid } ${ '->'} Mensaje: ${b.mensaje}</p>`, ` `)
+    document.getElementById('lastMessage').innerHTML = content
+})
 
 

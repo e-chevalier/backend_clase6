@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,15 +15,20 @@
     <div class="container">
         <div class="fs-1 text-primary">Practica 1 - Sockets</div>
         <div class="my-5 py-5">
-            <label for="message" class="form-label">Mensaje</label>
-            <input type="text" name="message" class="form-control" id="message" aria-describedby="messageHelp">
-            
+            <form action="" method="post">
+                <div class="mb-3">
+                    <label for="message" class="form-label">Mensaje</label>
+                    <input type="text" name="message" class="form-control" id="message" aria-describedby="messageHelp">
+                </div>
+                <button id="btn_submit" class="btn btn-primary">Enviar</button>
+            </form>
+
             <div class="fs-2 text-primary pt-4 mt-4">Ultimo mensaje</div>
-            
-            <p class="fs-3 tex-warning py-2 my-2" id="lastMessage"></p>
+
+            <div class="fs-3 tex-warning py-2 my-2" id="lastMessage"></div>
         </div>
     </div>
-    
+
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 

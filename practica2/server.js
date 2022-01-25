@@ -19,6 +19,8 @@ app.use('/bootstrap', express.static('./node_modules/bootstrap/dist'))
 const messages = []
 
 io.on('connection', (socket) => {
+    // Emit all Massages on connection.
+    io.sockets.emit('messages', messages)
     
     console.log('¡Nuevo cliente conectado!')  // - Pedido 1
     socket.on('newMessage', (data) => {
