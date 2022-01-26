@@ -52,5 +52,17 @@
     "price": "600",
     "thumbnail": "https://cdn3.iconfinder.com/data/icons/fruits-52/150/icon_fruit_melancia-128.png",
     "id": 9
+  },
+  {
+    "title": "Anana",
+    "price": "500.05",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/fruits-52/150/icon_fruit_abacaxi-128.png",
+    "id": 10
+  },
+  {
+    "title": "Maracuya",
+    "price": "250",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/fruits-52/150/icon_fruit_maracuja-128.png",
+    "id": 11
   }
 ]

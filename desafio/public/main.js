@@ -1,22 +1,30 @@
 const socket = io()
 
-const btn_submit = document.getElementById('btn_submit')
+const btnForm_submit = document.getElementById('btnForm_submit')
 
-btn_submit.addEventListener('click', (e) => {
+btnForm_submit.addEventListener('click', (e) => {
     //console.log(e.target.value)
     e.preventDefault()
-    let message = {
-        author: document.getElementById('author').value,
-        text: document.getElementById('message').value
+    let prod = {
+        title: document.getElementById('title').value,
+        price: document.getElementById('price').value, 
+        thumbnail: document.getElementById('thumbnail').value
     }
-    document.getElementById('message').value = ""
+    document.getElementById('title').value = ""
+    document.getElementById('price').value = ""
+    document.getElementById('thumbnail').value = ""
 
-    socket.emit('newMessage', message)
+    socket.emit('newProduct', prod)
 })
 
-socket.on('messages', (data) =>  { 
-    let content = data.reduce( (a, b, idx) => a + `<div><strong class="${ idx%2? 'text-danger':'text-success' }">${b.author}</strong>:<em> ${b.text}</em> </div>`, ` `)
-    document.getElementById('lastMessage').innerHTML = content
+socket.on('products', (data) =>  { 
+    let content = data.reduce( (a, b, idx) => a + 
+        `<tr>
+            <td>${b.title}</td>
+            <td>$${b.price}</td>
+            <td><img src="${b.thumbnail}" alt="${b.title}" width="32" height="32" /></td>
+        </tr>`, ` `)
+    document.getElementById('productsTable').innerHTML = content
 })
 
 
