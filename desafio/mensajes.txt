@@ -1,0 +1,5 @@
+[
+    { author: "CharlyGarcia@gmail.com", date: "26/1/2022 08:33:30", text: "¡Hola! ¿Que tal?" },
+    { author: "PedroAznar@hotmail.com", date: "26/1/2022 08:34:30", text: "¡Muy bien! ¿Y vos?" },
+    { author: "GustavoCerati59@live.com", date: "26/1/2022 08:36:30", text: "¡Genial!" }
+]

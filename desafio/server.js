@@ -47,7 +47,7 @@ const fakeApi = () => products
 
 const messages = [
     { author: "CharlyGarcia@gmail.com", date: "26/1/2022 08:33:30", text: "¡Hola! ¿Que tal?" },
-    { author: "PedroAznar@ghotmail.com", date: "26/1/2022 08:34:30", text: "¡Muy bien! ¿Y vos?" },
+    { author: "PedroAznar@hotmail.com", date: "26/1/2022 08:34:30", text: "¡Muy bien! ¿Y vos?" },
     { author: "GustavoCerati59@live.com", date: "26/1/2022 08:36:30", text: "¡Genial!" }
 ]
 
@@ -55,6 +55,8 @@ const messages = [
 /**
  * 
  */
+
+const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
 
 io.on('connection', (socket) => {
     // Emit all Products and Messages on connection.
@@ -75,7 +77,7 @@ io.on('connection', (socket) => {
     })
 
     socket.on('newMessage', (data) => {
-        if (Object.keys(data).length !== 0 && data.author !== '' && data.date !== '' && data.text !== '') {
+        if (Object.keys(data).length !== 0 && re.test(data.author) && data.date !== '' && data.text !== '') {
             console.log(data)
             messages.push(data)
             io.sockets.emit('messages', messages)
@@ -86,25 +88,12 @@ io.on('connection', (socket) => {
 
 
 app.get('/', (req, res) => {
-    res.render('main', { productos: fakeApi(), isEmpty: fakeApi().length ? false : true })
+    res.render('main')
 })
 
-/*
-app.get('/productos', (req, res) => {
-    res.render('main', { productos: fakeApi(), isEmpty: fakeApi().length ? false : true })
-})
 
-app.post('/productos', (req, res) => {
-    let prod = req.body
-    if (Object.keys(prod).length !== 0 && prod.title !== '' && prod.price !== '' && prod.thumbnail !== '') {
-        const max = productos.reduce((a, b) => a.id > b.id ? a : b, { id: 0 })
-        prod.id = max.id + 1
-        productos.push(prod)
-        contenedor.save(prod)
-    }
-    res.render('form')
-})
-*/
+
+
 
 
 

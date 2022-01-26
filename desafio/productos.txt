@@ -64,5 +64,11 @@
     "price": "250",
     "thumbnail": "https://cdn3.iconfinder.com/data/icons/fruits-52/150/icon_fruit_maracuja-128.png",
     "id": 11
+  },
+  {
+    "title": "Tamarindo",
+    "price": "100",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/fruits-52/150/icon_fruit_tamarindo-128.png",
+    "id": 12
   }
 ]
