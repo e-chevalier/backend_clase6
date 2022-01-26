@@ -28,3 +28,31 @@ socket.on('products', (data) =>  {
 })
 
 
+
+const btnChat_submit = document.getElementById('btnChat_submit')
+
+btnChat_submit.addEventListener('click', (e) => {
+    //console.log(e.target.value)
+    e.preventDefault()
+    let message = {
+        author: document.getElementById('author').value,
+        date: (new Date()).toLocaleString(),
+        text: document.getElementById('message').value
+    }
+    document.getElementById('message').value = ""
+
+    socket.emit('newMessage', message)
+})
+
+socket.on('messages', (data) =>  { 
+    let content = data.reduce( (a, b, idx) => a + 
+    `<div class="d-block">
+        <strong class="d-inline text-primary">${b.author}</strong> 
+        <div class="d-inline text-danger">${b.date}</div> : 
+        <em class="d-inline text-success"> ${b.text}</em>
+    </div>
+    `, ` `)
+    document.getElementById('lastMessage').innerHTML = content
+})
+
+

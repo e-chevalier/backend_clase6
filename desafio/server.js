@@ -44,14 +44,23 @@ const products = await contenedor.getAll()
 
 const fakeApi = () => products
 
+
+const messages = [
+    { author: "CharlyGarcia@gmail.com", date: "26/1/2022 08:33:30", text: "¡Hola! ¿Que tal?" },
+    { author: "PedroAznar@ghotmail.com", date: "26/1/2022 08:34:30", text: "¡Muy bien! ¿Y vos?" },
+    { author: "GustavoCerati59@live.com", date: "26/1/2022 08:36:30", text: "¡Genial!" }
+]
+
+
 /**
  * 
  */
 
- io.on('connection', (socket) => {
-    // Emit all Massages on connection.
+io.on('connection', (socket) => {
+    // Emit all Products and Messages on connection.
     io.sockets.emit('products', products)
-    
+    io.sockets.emit('messages', messages)
+
     console.log('¡Nuevo cliente conectado!')  // - Pedido 1
 
     socket.on('newProduct', (prod) => {
@@ -60,11 +69,19 @@ const fakeApi = () => products
             prod.id = max.id + 1
             products.push(prod)
             contenedor.save(prod)
+            io.sockets.emit('products', products)
         }
         console.log(prod)
-        io.sockets.emit('products', products)
     })
-    
+
+    socket.on('newMessage', (data) => {
+        if (Object.keys(data).length !== 0 && data.author !== '' && data.date !== '' && data.text !== '') {
+            console.log(data)
+            messages.push(data)
+            io.sockets.emit('messages', messages)
+        }
+    })
+
 })
 
 
