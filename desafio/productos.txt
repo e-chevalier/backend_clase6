@@ -70,5 +70,11 @@
     "price": "100",
     "thumbnail": "https://cdn3.iconfinder.com/data/icons/fruits-52/150/icon_fruit_tamarindo-128.png",
     "id": 12
+  },
+  {
+    "title": "Ciruela",
+    "price": "355",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/fruits-52/150/icon_fruit_ameixa-128.png",
+    "id": 13
   }
 ]

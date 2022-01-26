@@ -38,19 +38,20 @@ httpServer.listen(PORT, () => {
 httpServer.on("error", error => console.log(`Error en servidor ${error}`))
 
 
-const contenedor = new Contenedor('productos.txt')
-const products = await contenedor.getAll()
+const contenedorProductos = new Contenedor('productos.txt')
+const products = await contenedorProductos.getAll()
+const contenedorMensajes = new Contenedor('mensajes.txt')
+const messages = await contenedorMensajes.getAll()
+
 //productos.length = 0
 
-const fakeApi = () => products
-
-
+/*
 const messages = [
     { author: "CharlyGarcia@gmail.com", date: "26/1/2022 08:33:30", text: "¡Hola! ¿Que tal?" },
     { author: "PedroAznar@hotmail.com", date: "26/1/2022 08:34:30", text: "¡Muy bien! ¿Y vos?" },
     { author: "GustavoCerati59@live.com", date: "26/1/2022 08:36:30", text: "¡Genial!" }
 ]
-
+*/
 
 /**
  * 
@@ -70,16 +71,15 @@ io.on('connection', (socket) => {
             const max = products.reduce((a, b) => a.id > b.id ? a : b, { id: 0 })
             prod.id = max.id + 1
             products.push(prod)
-            contenedor.save(prod)
+            contenedorProductos.save(prod)
             io.sockets.emit('products', products)
         }
-        console.log(prod)
     })
 
     socket.on('newMessage', (data) => {
         if (Object.keys(data).length !== 0 && re.test(data.author) && data.date !== '' && data.text !== '') {
-            console.log(data)
             messages.push(data)
+            contenedorMensajes.save(data)
             io.sockets.emit('messages', messages)
         }
     })
